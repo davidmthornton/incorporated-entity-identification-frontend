@@ -30,7 +30,6 @@ object MessageLookup {
       val title = "There is a problem"
       val error = "Error: "
     }
-
   }
 
   object Header {

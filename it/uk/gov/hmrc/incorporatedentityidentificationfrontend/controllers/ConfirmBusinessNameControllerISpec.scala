@@ -22,7 +22,7 @@ import play.api.test.Helpers._
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.assets.TestConstants._
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.featureswitch.core.config.FeatureSwitching
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.models.BusinessEntity.LimitedCompany
-import uk.gov.hmrc.incorporatedentityidentificationfrontend.models.{CompanyProfile, CtEnrolled, DetailsMatched, JourneyConfig, PageConfig}
+import uk.gov.hmrc.incorporatedentityidentificationfrontend.models._
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.stubs.{AuthStub, IncorporatedEntityIdentificationStub}
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.utils.ComponentSpecHelper
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.views.ConfirmBusinessNameViewTests
@@ -55,7 +55,6 @@ class ConfirmBusinessNameControllerISpec extends ComponentSpecHelper
 
       "return a view" when {
         "there is no serviceName passed in the journeyConfig" should {
-
           lazy val insertConfig = journeyConfigRepository.insertJourneyConfig(
             journeyId = testJourneyId,
             authInternalId = testInternalId,
@@ -72,9 +71,7 @@ class ConfirmBusinessNameControllerISpec extends ComponentSpecHelper
           testConfirmBusinessNameView(result, stub, authStub, insertConfig, testCompanyName)
           testServiceName(testDefaultServiceName, result, authStub, insertConfig)
         }
-
         "there is a serviceName passed in the journeyConfig" should {
-
           lazy val insertConfig = journeyConfigRepository.insertJourneyConfig(
             journeyId = testJourneyId,
             authInternalId = testInternalId,
@@ -138,7 +135,6 @@ class ConfirmBusinessNameControllerISpec extends ComponentSpecHelper
 
     "return NOT_FOUND" when {
       "the journeyId does not match what is stored in the journey config database" in {
-
         await(journeyConfigRepository.insertJourneyConfig(
           journeyId = testJourneyId + "1",
           authInternalId = testInternalId,
@@ -153,7 +149,6 @@ class ConfirmBusinessNameControllerISpec extends ComponentSpecHelper
       }
 
       "the auth internal ID does not match what is stored in the journey config database" in {
-
         await(journeyConfigRepository.insertJourneyConfig(
           journeyId = testJourneyId,
           authInternalId = testInternalId + "1",
@@ -168,7 +163,6 @@ class ConfirmBusinessNameControllerISpec extends ComponentSpecHelper
       }
 
       "neither the journey ID or auth internal ID are found in the journey config database" in {
-
         await(journeyConfigRepository.insertJourneyConfig(
           journeyId = testJourneyId + "1",
           authInternalId = testInternalId + "1",
@@ -192,7 +186,6 @@ class ConfirmBusinessNameControllerISpec extends ComponentSpecHelper
         result.status mustBe INTERNAL_SERVER_ERROR
       }
     }
-
   }
 
   "POST /confirm-business-name" should {

@@ -75,7 +75,7 @@ trait CheckYourAnswersViewTests {
     }
 
     "have the correct title" in {
-      if (doc.getServiceName.text.equals("Entity Validation Service")){
+      if (doc.getServiceName.text.equals("Entity Validation Service")) {
         doc.title mustBe s"${messages.title} - $testDefaultServiceName - GOV.UK"
       } else {
         doc.title mustBe s"${messages.title} - $testCallingServiceName - GOV.UK"
@@ -173,7 +173,7 @@ trait CheckYourAnswersViewTests {
     }
 
     "have the correct title" in {
-      if (doc.getServiceName.text.equals("Entity Validation Service")){
+      if (doc.getServiceName.text.equals("Entity Validation Service")) {
         doc.title mustBe s"${messages.title} - $testDefaultServiceName - GOV.UK"
       } else {
         doc.title mustBe s"${messages.title} - $testCallingServiceName - GOV.UK"
@@ -222,7 +222,6 @@ trait CheckYourAnswersViewTests {
         backLinks.first.text mustBe Base.back
       }
     }
-
   }
 
   def testCheckYourAnswersCIOView(journeyId: String)
@@ -263,7 +262,7 @@ trait CheckYourAnswersViewTests {
     }
 
     "have the correct title" in {
-      if (doc.getServiceName.text.equals("Entity Validation Service")){
+      if (doc.getServiceName.text.equals("Entity Validation Service")) {
         doc.title mustBe s"${messages.title} - $testDefaultServiceName - GOV.UK"
       } else {
         doc.title mustBe s"${messages.title} - $testCallingServiceName - GOV.UK"
@@ -316,13 +315,13 @@ trait CheckYourAnswersViewTests {
   }
 
   def testCheckYourAnswersOnlyCRNCIOView(journeyId: String)
-                                 (result: => WSResponse,
-                                  companyNumberStub: => StubMapping,
-                                  authStub: => StubMapping,
-                                  insertJourneyConfig: => Future[WriteResult],
-                                  auditStub: => StubMapping,
-                                  retrieveChrnStub: => StubMapping,
-                                  retrieveCtutrStub: => StubMapping): Unit = {
+                                        (result: => WSResponse,
+                                         companyNumberStub: => StubMapping,
+                                         authStub: => StubMapping,
+                                         insertJourneyConfig: => Future[WriteResult],
+                                         auditStub: => StubMapping,
+                                         retrieveChrnStub: => StubMapping,
+                                         retrieveCtutrStub: => StubMapping): Unit = {
 
     lazy val doc: Document = {
       await(insertJourneyConfig)
@@ -353,7 +352,7 @@ trait CheckYourAnswersViewTests {
     }
 
     "have the correct title" in {
-      if (doc.getServiceName.text.equals("Entity Validation Service")){
+      if (doc.getServiceName.text.equals("Entity Validation Service")) {
         doc.title mustBe s"${messages.title} - $testDefaultServiceName - GOV.UK"
       } else {
         doc.title mustBe s"${messages.title} - $testCallingServiceName - GOV.UK"
@@ -423,3 +422,4 @@ trait CheckYourAnswersViewTests {
   }
 
 }
+

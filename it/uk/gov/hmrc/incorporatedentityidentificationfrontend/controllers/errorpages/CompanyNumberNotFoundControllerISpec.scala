@@ -31,7 +31,6 @@ class CompanyNumberNotFoundControllerISpec extends ComponentSpecHelper with Comp
 
   "GET /error/company-name-not-found" when {
     "return ok" in {
-
       await(journeyConfigRepository.insertJourneyConfig(
         journeyId = testJourneyId,
         authInternalId = testInternalId,
@@ -47,7 +46,6 @@ class CompanyNumberNotFoundControllerISpec extends ComponentSpecHelper with Comp
 
     "return a view" when {
       "there is no serviceName passed in the journeyConfig" should {
-
         lazy val insertConfig = journeyConfigRepository.insertJourneyConfig(
           journeyId = testJourneyId,
           authInternalId = testInternalId,
@@ -60,9 +58,7 @@ class CompanyNumberNotFoundControllerISpec extends ComponentSpecHelper with Comp
         testCompanyNumberNotFoundView(result, authStub, insertConfig)
         testServiceName(testDefaultServiceName, result, authStub, insertConfig)
       }
-
       "there is a serviceName passed in the journeyConfig" should {
-
         lazy val insertConfig = journeyConfigRepository.insertJourneyConfig(
           journeyId = testJourneyId,
           authInternalId = testInternalId,

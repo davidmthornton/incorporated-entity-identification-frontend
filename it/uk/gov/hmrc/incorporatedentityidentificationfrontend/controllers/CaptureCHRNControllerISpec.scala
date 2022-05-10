@@ -24,7 +24,6 @@ import uk.gov.hmrc.incorporatedentityidentificationfrontend.stubs.{AuthStub, Inc
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.utils.ComponentSpecHelper
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.views.CaptureCHRNumberViewTests
 
-
 class CaptureCHRNControllerISpec extends ComponentSpecHelper
   with CaptureCHRNumberViewTests
   with IncorporatedEntityIdentificationStub
@@ -176,9 +175,7 @@ class CaptureCHRNControllerISpec extends ComponentSpecHelper
           await(journeyConfigRepository.insertJourneyConfig(
             journeyId = testJourneyId,
             authInternalId = testInternalId,
-            journeyConfig = testCharitableIncorporatedOrganisationJourneyConfig
-          )
-          )
+            journeyConfig = testCharitableIncorporatedOrganisationJourneyConfig))
           stubAuth(OK, successfulAuthResponse(Some(testInternalId)))
           lazy val result = post(s"$baseUrl/$testJourneyId/chrn")("chrn" -> "")
 
@@ -221,7 +218,7 @@ class CaptureCHRNControllerISpec extends ComponentSpecHelper
         testCaptureCHRNErrorMessagesInvalidLength(result, authStub, insertConfig)
       }
 
-      "a CHRN exceeds the specified maximum length is submitted" should {
+      "a CHRN in an invalid format is submitted" should {
         "return a bad request" in {
           await(journeyConfigRepository.insertJourneyConfig(
             journeyId = testJourneyId,
@@ -248,9 +245,7 @@ class CaptureCHRNControllerISpec extends ComponentSpecHelper
     }
 
     "the user is not authorized" should {
-
       "redirect the user to the login page" in {
-
         stubAuthFailure()
 
         val result = post(s"$baseUrl/$testJourneyId/chrn")("chrn" -> testCHRN)
@@ -314,7 +309,6 @@ class CaptureCHRNControllerISpec extends ComponentSpecHelper
     }
 
     "the user is not authorized" should {
-
       "redirect the user to the login page" in {
 
         stubAuthFailure()
@@ -326,7 +320,6 @@ class CaptureCHRNControllerISpec extends ComponentSpecHelper
           redirectUri(s"/bas-gateway/sign-in?continue_url=%2Fidentify-your-incorporated-business%2F$testJourneyId%2Fchrn&origin=incorporated-entity-identification-frontend")
         )
       }
-
     }
   }
 

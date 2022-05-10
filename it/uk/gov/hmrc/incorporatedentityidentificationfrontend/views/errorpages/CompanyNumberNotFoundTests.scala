@@ -24,10 +24,10 @@ import play.api.libs.ws.WSResponse
 import play.api.test.Helpers._
 import reactivemongo.api.commands.WriteResult
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.assets.MessageLookup.{Base, BetaBanner, Header, CompanyNumberNotFound => messages}
+import uk.gov.hmrc.incorporatedentityidentificationfrontend.assets.TestConstants._
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.config.AppConfig
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.utils.ComponentSpecHelper
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.utils.ViewSpecHelper._
-import uk.gov.hmrc.incorporatedentityidentificationfrontend.assets.TestConstants._
 
 import scala.concurrent.Future
 
@@ -63,12 +63,11 @@ trait CompanyNumberNotFoundTests {
     }
 
     "have the correct title" in {
-      if (doc.getServiceName.text.equals("Entity Validation Service")){
+      if (doc.getServiceName.text.equals("Entity Validation Service")) {
         doc.title mustBe s"${messages.title} - $testDefaultServiceName - GOV.UK"
       } else {
         doc.title mustBe s"${messages.title} - $testCallingServiceName - GOV.UK"
       }
-
     }
 
     "have the correct heading" in {
@@ -85,11 +84,9 @@ trait CompanyNumberNotFoundTests {
 
     "have a link to the service's accessibility statement" in {
       val footerLinks: Elements = doc.getFooterLinks
-
       footerLinks.size() must be >= 2
-
       footerLinks.eq(1).attr("href") mustBe testAccessibilityUrl
-  }
+    }
   }
 
   def testServiceName(serviceName: String,
@@ -106,7 +103,6 @@ trait CompanyNumberNotFoundTests {
     "correctly display the service name" in {
       doc.getServiceName.text mustBe serviceName
     }
-
   }
 
 }

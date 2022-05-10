@@ -24,10 +24,10 @@ import play.api.libs.ws.WSResponse
 import play.api.test.Helpers._
 import reactivemongo.api.commands.WriteResult
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.assets.MessageLookup.{Base, BetaBanner, Header, ConfirmBusinessName => messages}
+import uk.gov.hmrc.incorporatedentityidentificationfrontend.assets.TestConstants._
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.config.AppConfig
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.utils.ComponentSpecHelper
 import uk.gov.hmrc.incorporatedentityidentificationfrontend.utils.ViewSpecHelper._
-import uk.gov.hmrc.incorporatedentityidentificationfrontend.assets.TestConstants._
 
 import scala.concurrent.Future
 
@@ -50,7 +50,7 @@ trait ConfirmBusinessNameViewTests {
     lazy val config = app.injector.instanceOf[AppConfig]
 
     "have the correct title" in {
-      if (doc.getServiceName.text.equals("Entity Validation Service")){
+      if (doc.getServiceName.text.equals("Entity Validation Service")) {
         doc.title mustBe s"${messages.title} - $testDefaultServiceName - GOV.UK"
       } else {
         doc.title mustBe s"${messages.title} - $testCallingServiceName - GOV.UK"
@@ -92,9 +92,7 @@ trait ConfirmBusinessNameViewTests {
 
     "have a back link" in {
       val backLinks: Elements = doc.getBackLinks
-
       backLinks.size mustBe 1
-
       backLinks.first.text mustBe Base.back
     }
 
@@ -121,7 +119,6 @@ trait ConfirmBusinessNameViewTests {
     "correctly display the service name" in {
       doc.getServiceName.text mustBe serviceName
     }
-
   }
 
 }
